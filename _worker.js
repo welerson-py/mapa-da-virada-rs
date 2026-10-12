@@ -24,63 +24,199 @@ var NACIONAL = {
     { nome: "Romeu Zema (Novo)", votos: 326488, p: 27e-4, posicao: "declarou apoio a Fl\xE1vio em 5/10" }
   ]
 };
+var CATEGORIAS = {
+  escandalos: "Fl\xE1vio: esc\xE2ndalos",
+  bolso: "Fl\xE1vio: aposentadoria, sa\xFAde e casa",
+  trabalho: "Fl\xE1vio: trabalho",
+  democracia: "Fl\xE1vio: democracia",
+  eua: "Fl\xE1vio: Brasil x EUA",
+  lula: "O que Lula entregou",
+  historia: "20 anos de Lula e Dilma"
+};
 var DOSSIE = [
   {
-    id: "rachadinha",
+    id: "darkhorse",
+    cat: "escandalos",
     lado: "flavio",
-    titulo: "Rachadinha na Alerj",
-    texto: "O MP-RJ denunciou Fl\xE1vio por peculato, lavagem de dinheiro e organiza\xE7\xE3o criminosa no caso das 'rachadinhas' do seu gabinete de deputado estadual, com o ex-assessor Fabr\xEDcio Queiroz. O STJ e o STF anularam as provas (quebras de sigilo) por quest\xE3o processual e o caso foi arquivado em 2022. O m\xE9rito nunca foi julgado. Fl\xE1vio nega irregularidades.",
-    status: "den\xFAncia arquivada ap\xF3s anula\xE7\xE3o de provas; nunca julgada no m\xE9rito; ele nega",
-    fonte: "Estado de Minas, 6/4/2026",
-    url: "https://www.em.com.br/politica/2026/04/7391960-flavio-quer-abordar-rachadinha-na-pre-campanha-e-nega-irregularidades.html"
+    titulo: "Investigado no STF (caso Dark Horse)",
+    texto: "Em 22/7/2026, o ministro Andr\xE9 Mendon\xE7a, do STF, a pedido da PF e com aval da PGR, incluiu Fl\xE1vio como investigado por suspeita de corrup\xE7\xE3o, lavagem de dinheiro e evas\xE3o de divisas. A suspeita \xE9 que R$ 61 milh\xF5es do banqueiro Daniel Vorcaro, do Banco Master, foram liberados a pedido dele para financiar o filme sobre o pai. H\xE1 \xE1udio dele pedindo o dinheiro; ele n\xE3o nega que seja ele e diz que n\xE3o h\xE1 nada de errado. Ele tamb\xE9m admitiu ter se encontrado com Vorcaro depois da primeira pris\xE3o do banqueiro. Se eleito, segundo constitucionalistas, a investiga\xE7\xE3o pode ficar suspensa durante o mandato (art. 86 da Constitui\xE7\xE3o).",
+    status: "investigado formalmente; ainda sem den\xFAncia; ele nega irregularidade",
+    fonte: "Ag\xEAncia Brasil, 11/9/2026; Poder360, 19/5/2026; Di\xE1rio Carioca, 30/9/2026",
+    url: "https://agenciabrasil.ebc.com.br/justica/noticia/2026-09/mendonca-incluiu-flavio-bolsonaro-como-investigado-no-caso-dark-horse"
   },
   {
     id: "mansao",
+    cat: "escandalos",
     lado: "flavio",
     titulo: "Mans\xE3o de R$ 6 milh\xF5es e o BRB",
-    texto: "A PF investiga o financiamento de R$ 3,1 milh\xF5es que o BRB deu em 2021 para Fl\xE1vio comprar uma mans\xE3o de R$ 6 milh\xF5es em Bras\xEDlia, a juros de 3,71% ao ano, abaixo da m\xE9dia do banco naquele ano (4,85%). O empr\xE9stimo \xE9 um dos focos do inqu\xE9rito sobre a rela\xE7\xE3o do Banco Master com o BRB. Fl\xE1vio diz que tudo foi legal e que quitou a d\xEDvida em tr\xEAs anos.",
-    status: "PF investiga o empr\xE9stimo; n\xE3o h\xE1 den\xFAncia contra Fl\xE1vio; ele diz que foi legal",
+    texto: "A PF apura o financiamento de R$ 3,1 milh\xF5es que o BRB deu em 2021 para Fl\xE1vio comprar uma mans\xE3o de R$ 6 milh\xF5es em Bras\xEDlia, a juros de 3,71% ao ano, abaixo da m\xE9dia do banco naquele ano (4,85%). O empr\xE9stimo \xE9 um dos focos do inqu\xE9rito sobre o Banco Master e o BRB. Fl\xE1vio diz que tudo foi legal.",
+    status: "PF apura o empr\xE9stimo; sem den\xFAncia; ele diz que foi legal",
     fonte: "Midiamax, 2/10/2026",
     url: "https://midiamax.com.br/brasil/2026/pf-investiga-emprestimo-brb-flavio-bolsonaro-compra-mansao-r-6-milhoes/"
   },
   {
-    id: "vorcaro",
+    id: "rachadinha",
+    cat: "escandalos",
     lado: "flavio",
-    titulo: "Encontro com o dono do Banco Master",
-    texto: "Fl\xE1vio admitiu ter se reunido com Daniel Vorcaro, dono do Banco Master, depois da primeira pris\xE3o do banqueiro, quando ele estava em pris\xE3o domiciliar. Diz que Vorcaro era investidor do filme 'Dark Horse', sobre Jair Bolsonaro, e que o contato era s\xF3 sobre o filme.",
-    status: "fato admitido pelo pr\xF3prio Fl\xE1vio",
-    fonte: "Poder360, 19/5/2026",
-    url: "https://www.poder360.com.br/poder-eleicoes/flavio-confirma-encontro-com-vorcaro-apos-prisao-do-dono-do-master/"
+    titulo: "Rachadinha na Alerj",
+    texto: "O MP-RJ denunciou Fl\xE1vio por peculato, lavagem e organiza\xE7\xE3o criminosa: segundo a den\xFAncia, R$ 6 milh\xF5es foram desviados da Alerj com sal\xE1rios de funcion\xE1rios repassados ao ex-assessor Fabr\xEDcio Queiroz. O caso foi arquivado em 2022 porque o STJ anulou as provas, n\xE3o porque ele foi inocentado. O m\xE9rito nunca foi julgado. Ele nega.",
+    status: "den\xFAncia arquivada ap\xF3s anula\xE7\xE3o de provas; nunca julgada no m\xE9rito; ele nega",
+    fonte: "Poder360, 27/2/2025; Estado de Minas, 6/4/2026",
+    url: "https://www.poder360.com.br/poder-justica/gilmar-nega-pedido-para-reabrir-acao-contra-flavio-por-rachadinha/"
   },
   {
-    id: "indulto",
+    id: "emendair",
+    cat: "escandalos",
     lado: "flavio",
-    titulo: "Compromisso com indulto ao pai",
-    texto: "Jair Bolsonaro foi condenado pelo STF a 27 anos e 3 meses de pris\xE3o por liderar a trama golpista. Em 2025, Fl\xE1vio disse que o candidato apoiado pelo pai 'vai ter que ter esse compromisso' de indulto ou anistia, e falou em 'interfer\xEAncia direta entre os Poderes'. Caiado, que fechou apoio a Fl\xE1vio, tamb\xE9m promete indulto.",
-    status: "declara\xE7\xF5es p\xFAblicas; condena\xE7\xE3o definitiva do STF",
-    fonte: "Folha via Portal de Prefeitura, 16/6/2025; Aos Fatos; Viva, 6/10/2026",
-    url: "https://www.aosfatos.org/noticias/o-que-acontece-com-bolsonaro-condenado-a-27-anos-de-prisao/"
-  },
-  {
-    id: "6x1",
-    lado: "flavio",
-    titulo: "Contra o fim da escala 6x1",
-    texto: "A C\xE2mara aprovou o fim da escala 6x1 e a jornada de 40 horas sem corte de sal\xE1rio por 461 a 19. Fl\xE1vio chamou o projeto de 'oportunista', defende o 'negociado sobre o legislado' e um texto de pagamento por hora trabalhada, e n\xE3o responde se vota a favor da PEC. Seu coordenador de campanha, Rog\xE9rio Marinho, defendeu adiar a vota\xE7\xE3o no Senado.",
-    status: "vota\xE7\xE3o e declara\xE7\xF5es p\xFAblicas",
-    fonte: "InfoMoney, 27/5/2026; O Liberal, 1/9/2026; A Tarde, out/2026",
-    url: "https://www.oliberal.com/politica/flavio-bolsonaro-foge-novamente-de-responder-se-votara-a-favor-ou-contra-pec-6x1-1.1163609"
+    titulo: "Emenda que ajudaria o pr\xF3prio escrit\xF3rio",
+    texto: "Em novembro de 2025, Fl\xE1vio apresentou emenda para tirar da nova tributa\xE7\xE3o os lucros de sociedades de profissionais liberais. Ele \xE9 dono de uma sociedade individual de advocacia, que poderia se beneficiar. Ele disse que n\xE3o \xE9 razo\xE1vel tributar o trabalho dos profissionais liberais.",
+    status: "emenda apresentada; regra geral que poderia beneficiar o escrit\xF3rio dele",
+    fonte: "SBT News",
+    url: "https://sbtnews.sbt.com.br/noticia/politica/flavio-propos-isencao-no-ir-que-beneficiaria-escritorio-dele"
   },
   {
     id: "faltas",
+    cat: "escandalos",
     lado: "flavio",
     titulo: "Faltas no Senado",
-    texto: "At\xE9 15 de julho de 2026, Fl\xE1vio n\xE3o votou em 15 das 54 vota\xE7\xF5es nominais do Senado no ano, sem justificativa registrada, segundo os relat\xF3rios oficiais compilados pelo SBT News. A assessoria diz que ele atua de forma ativa.",
+    texto: "At\xE9 15 de julho de 2026, Fl\xE1vio n\xE3o votou em 15 das 54 vota\xE7\xF5es nominais do Senado no ano, sem justificativa registrada, segundo relat\xF3rios oficiais compilados pelo SBT News. A assessoria diz que ele atua de forma ativa.",
     status: "levantamento jornal\xEDstico com dados oficiais; ele contesta",
     fonte: "SBT News, 16/7/2026",
     url: "https://sbtnews.sbt.com.br/colunas/coluna-do-ranier/flavio-bolsonaro-lidera-faltas-a-votacoes-no-senado-em-2026"
   },
   {
+    id: "aposentadoria",
+    cat: "bolso",
+    lado: "flavio",
+    titulo: "Aposentadoria e BPC s\xF3 pela infla\xE7\xE3o",
+    texto: "Segundo a Folha, a equipe econ\xF4mica de Fl\xE1vio estudou corrigir aposentadorias e BPC s\xF3 pela infla\xE7\xE3o, sem o aumento real do sal\xE1rio m\xEDnimo, e fazer o mesmo com o m\xEDnimo obrigat\xF3rio para sa\xFAde e educa\xE7\xE3o. As contas da equipe falam em R$ 1,1 trilh\xE3o a menos para aposentados e BPC em dez anos e R$ 800 bilh\xF5es a menos para sa\xFAde e educa\xE7\xE3o. Fl\xE1vio nega, chama de 'fake news do PT' e diz: 'Aposentado, fique tranquilo'.",
+    status: "estudo interno revelado pela Folha; Fl\xE1vio nega",
+    fonte: "Folha via Viva, 8/10/2026",
+    url: "https://viva.com.br/politica/reajuste-de-aposentadorias-e-bpc-vai-mudar-com-flavio-bolsonaro-entenda.html"
+  },
+  {
+    id: "pec300",
+    cat: "bolso",
+    lado: "flavio",
+    titulo: "PEC de corte de R$ 300 bilh\xF5es",
+    texto: "Segundo a CNN, a equipe de Fl\xE1vio planeja uma 'PEC da Transi\xE7\xE3o' com corte de cerca de R$ 300 bilh\xF5es, com medidas classificadas internamente como leves, m\xE9dias e duras, incluindo desvincular recursos da sa\xFAde e da educa\xE7\xE3o. A campanha desautorizou o que foi atribu\xEDdo a fontes an\xF4nimas.",
+    status: "reportagem com fontes an\xF4nimas; campanha desautoriza",
+    fonte: "CNN Brasil, 25/9/2026",
+    url: "https://www.cnnbrasil.com.br/blogs/caio-junqueira/eleicoes/flavio-planeja-pec-da-transicao-com-corte-de-gastos-de-r-300-bilhoes/"
+  },
+  {
+    id: "previdencia",
+    cat: "bolso",
+    lado: "flavio",
+    titulo: "Nova reforma da Previd\xEAncia",
+    texto: "Rog\xE9rio Marinho, coordenador da campanha e respons\xE1vel pela reforma da Previd\xEAncia de 2019, disse \xE0 Folha: 'O modelo est\xE1 estourando. S\xF3 posso dizer que a gente vai ter que revisitar a Previd\xEAncia'. Fl\xE1vio votou a favor da reforma de 2019. No governo do pai dele, o sal\xE1rio m\xEDnimo ficou sem aumento real de 2020 a 2022.",
+    status: "declara\xE7\xE3o p\xFAblica; voto registrado no Senado",
+    fonte: "Sindip\xFAblicos/Folha; Ag\xEAncia Senado, 22/10/2019; CUT",
+    url: "https://www12.senado.leg.br/noticias/materias/2019/10/22/reforma-da-previdencia-como-votaram-os-senadores-com-relacao-ao-texto-principal-em-segundo-turno"
+  },
+  {
+    id: "saudeedu",
+    cat: "bolso",
+    lado: "flavio",
+    titulo: "Sa\xFAde, creche e universidade",
+    texto: "O plano de Fl\xE1vio tira o ensino superior do MEC e passa para o Minist\xE9rio da Ci\xEAncia e Tecnologia, prop\xF5e voucher para pagar creche privada em vez de ampliar a creche p\xFAblica e prev\xEA compartilhar dados de pacientes do SUS com hospitais privados.",
+    status: "trechos do plano de governo registrado no TSE",
+    fonte: "Ag\xEAncia Brasil, set/2026",
+    url: "https://agenciabrasil.ebc.com.br/politica/noticia/2026-09/flavio-bolsonaro-propoe-enxugar-estado-e-endurecer-acoes-de-seguranca"
+  },
+  {
+    id: "moradia",
+    cat: "bolso",
+    lado: "flavio",
+    titulo: "Volta do Casa Verde e Amarela",
+    texto: "O plano quer retomar o Casa Verde e Amarela, do governo Bolsonaro, que parou de contratar casas para a faixa mais pobre (renda at\xE9 R$ 1,8 mil). Hoje, no Minha Casa Minha Vida, fam\xEDlias do Bolsa Fam\xEDlia e do BPC podem receber o im\xF3vel sem pagar presta\xE7\xE3o. O plano tamb\xE9m quer retomar privatiza\xE7\xF5es e cortar dez minist\xE9rios sem dizer quais.",
+    status: "plano de governo; dados do programa anterior",
+    fonte: "Ag\xEAncia Brasil, set/2026; Congresso em Foco, 2020; Di\xE1rio do Com\xE9rcio",
+    url: "https://congressoemfoco.com.br/noticia/23086/substituto-do-minha-casa-minha-vida-nao-atende-aos-mais-carentes"
+  },
+  {
+    id: "6x1",
+    cat: "trabalho",
+    lado: "flavio",
+    titulo: "Contra o fim da escala 6x1",
+    texto: "A C\xE2mara aprovou o fim da 6x1 e as 40 horas sem corte de sal\xE1rio por 461 a 19. Fl\xE1vio chamou de 'oportunista' e disse: 'Quem quer trabalhar mais vai trabalhar mais'. Em 6/10 tentou esvaziar o Senado para impedir o in\xEDcio da discuss\xE3o e n\xE3o conseguiu (49 senadores deram presen\xE7a). Com Rog\xE9rio Marinho, apresentou a PEC 12/2026, que mant\xE9m a 6x1 e cria o trabalho por hora.",
+    status: "vota\xE7\xE3o, declara\xE7\xF5es e PEC p\xFAblicas",
+    fonte: "Poder360, 6/10/2026; Plural; InfoMoney, 27/5/2026",
+    url: "https://www.poder360.com.br/poder-eleicoes-2026/flavio-critica-fim-da-escala-6-x-1-e-defende-jornada-flexivel/"
+  },
+  {
+    id: "planotrab",
+    cat: "trabalho",
+    lado: "flavio",
+    titulo: "O plano para quem trabalha",
+    texto: "O plano fala em contrato 'com menor custo na folha' para jovens de 18 a 24 anos, em modalidade 'mais atrativa' para empresas contratarem quem tem mais de 50 anos, no 'negociado sobre o legislado' (o acordo com o patr\xE3o valendo mais que a lei) e tem uma se\xE7\xE3o chamada 'O trabalhador em primeiro lugar, n\xE3o o sindicato'.",
+    status: "trechos do plano citados pela Funda\xE7\xE3o Perseu Abramo",
+    fonte: "Funda\xE7\xE3o Perseu Abramo; Forbes, out/2026",
+    url: "https://fpabramo.org.br/o-mundo-do-trabalho-no-plano-de-governo-do-candidato-flavio-bolsonaro-precarizacao-vulnerabilidade-e-ataque-aos-sindicatos/"
+  },
+  {
+    id: "revogaco",
+    cat: "trabalho",
+    lado: "flavio",
+    titulo: "Revoga\xE7o sem dizer o qu\xEA",
+    texto: "O plano promete uma 'ampla revis\xE3o normativa infralegal' nas \xE1reas trabalhista e previdenci\xE1ria e um 'revoga\xE7o regulat\xF3rio', sem dizer quais regras cairiam. S\xE3o regras desse tipo que hoje garantem, por exemplo, aux\xEDlio para gestante de alto risco sem car\xEAncia e a prote\xE7\xE3o contra adoecimento mental no trabalho (NR-1). Ele tamb\xE9m quer retomar a reforma administrativa do governo do pai, que acabava com a estabilidade da maioria dos futuros servidores.",
+    status: "trechos do plano; os exemplos de regras s\xE3o an\xE1lise da imprensa",
+    fonte: "ICL Not\xEDcias, 7/10/2026; Exame; SIMPE-RS",
+    url: "https://iclnoticias.com.br/plano-flavio-bolsonaro-ameaca-gestantes/"
+  },
+  {
+    id: "urnas",
+    cat: "democracia",
+    lado: "flavio",
+    titulo: "Mentira sobre as urnas",
+    texto: "Em 21/7/2026, num encontro com diplomatas estrangeiros, Fl\xE1vio disse que as urnas brasileiras teriam 'a mesma origem' da empresa venezuelana Smartmatic. A Ag\xEAncia Lupa checou: \xE9 falso. Foi uma reuni\xE3o com embaixadores atacando as urnas que deixou o pai dele ineleg\xEDvel.",
+    status: "declara\xE7\xE3o checada como falsa",
+    fonte: "Ag\xEAncia Lupa, 24/7/2026; Jota",
+    url: "https://www.agencialupa.org/reportagem/2026/07/24/ataques-de-flavio-bolsonaro-as-urnas-geram-pico-de-mencoes-a-fraude-eleitoral-em-redes/"
+  },
+  {
+    id: "indulto",
+    cat: "democracia",
+    lado: "flavio",
+    titulo: "Anistia e indulto para o pai",
+    texto: "Jair Bolsonaro foi condenado pelo STF a 27 anos e 3 meses por liderar a trama golpista. Fl\xE1vio defende anistia 'ampla, geral e irrestrita' para 'libertar Jair Messias Bolsonaro' e todos os condenados pelo golpe, e promete indulto se a anistia n\xE3o passar. Caiado, que fechou apoio a ele, tamb\xE9m promete indulto.",
+    status: "declara\xE7\xF5es p\xFAblicas; condena\xE7\xE3o definitiva do STF",
+    fonte: "Euronews, 29/8/2026; Aos Fatos; Viva, 6/10/2026",
+    url: "https://pt.euronews.com/2026/08/29/filho-de-bolsonaro-insiste-que-julgamento-do-pai-foi-uma-farsa-e-que-lhe-concedera-um-indu"
+  },
+  {
+    id: "stf",
+    cat: "democracia",
+    lado: "flavio",
+    titulo: "Contra o STF",
+    texto: "O plano prop\xF5e estreitar as regras para entidades e partidos proporem a\xE7\xF5es que derrubam leis inconstitucionais (ADIs, ADCs e ADPFs). Em 8/10, depois que Moraes mandou Eduardo Bolsonaro cumprir pena por coa\xE7\xE3o, por articular san\xE7\xF5es estrangeiras contra autoridades brasileiras, Fl\xE1vio pediu a ren\xFAncia de Moraes e disse que j\xE1 h\xE1 50 senadores a favor de impeachment de ministros do STF.",
+    status: "plano de governo e declara\xE7\xF5es p\xFAblicas",
+    fonte: "Exame; Gazeta do Povo, 8/10/2026",
+    url: "https://www.gazetadopovo.com.br/republica/flavio-bolsonaro-pede-renuncia-de-moraes-apos-decisao-contra-eduardo/"
+  },
+  {
+    id: "preco",
+    cat: "democracia",
+    lado: "flavio",
+    titulo: "'Tenho um pre\xE7o'",
+    texto: "Em dezembro de 2025, Fl\xE1vio disse que havia a possibilidade de n\xE3o ir at\xE9 o fim com a candidatura e que tinha 'um pre\xE7o' para isso. Dias depois disse que o pre\xE7o seria a liberdade do pai e, por fim, que n\xE3o havia pre\xE7o.",
+    status: "declara\xE7\xF5es p\xFAblicas",
+    fonte: "Al Jazeera, 10/12/2025",
+    url: "https://www.aljazeera.com/news/2025/12/10/flavio-bolsonaro-retracts-suggestion-of-a-price-to-end-2026-election-bid"
+  },
+  {
+    id: "eua",
+    cat: "eua",
+    lado: "flavio",
+    titulo: "Alinhado aos EUA de Trump",
+    texto: "Na CPAC, nos EUA, Fl\xE1vio apresentou o Brasil como 'a solu\xE7\xE3o' para os americanos dependerem menos da China em minerais cr\xEDticos e terras raras. Numa audi\xEAncia em Washington sobre o tarifa\xE7o de Trump contra produtos brasileiros, segundo a imprensa, n\xE3o contestou as justificativas e s\xF3 pediu adiamento por ser o 'pior momento'. E disse que quer, 'com muita honra', colocar o Brasil no Escudo das Am\xE9ricas, a coaliz\xE3o militar criada por Trump.",
+    status: "declara\xE7\xF5es p\xFAblicas e relatos de imprensa",
+    fonte: "Band, 30/3/2026; Intercept/BBC, jul/2026; Vermelho, 9/10/2026",
+    url: "https://www.band.com.br/radio-bandeirantes/noticias/flavio-bolsonaro-discute-terras-raras-e-minerais-nos-eua-202603301720"
+  },
+  {
     id: "ir",
+    cat: "lula",
     lado: "lula",
     titulo: "Imposto de Renda zero at\xE9 R$ 5 mil",
     texto: "Com a lei sancionada por Lula em novembro de 2025, quem ganha at\xE9 R$ 5 mil por m\xEAs deixou de pagar Imposto de Renda. No RS s\xE3o cerca de 790 mil trabalhadores isentos e outros 412 mil, entre R$ 5 mil e R$ 7.350, com desconto.",
@@ -90,31 +226,117 @@ var DOSSIE = [
   },
   {
     id: "emprego",
+    cat: "lula",
     lado: "lula",
     titulo: "Menor desemprego da hist\xF3ria",
     texto: "O desemprego caiu para 5,4% no 2\xBA trimestre de 2026, o menor da s\xE9rie do IBGE, iniciada em 2012. No RS a m\xE9dia de 2025 foi 4,0%. No governo de Jair Bolsonaro a m\xE9dia anual ficou entre 9,6% e 14,0% (com a pandemia em 2020 e 2021).",
     status: "dados oficiais do IBGE (PNAD Cont\xEDnua)",
-    fonte: "IBGE; O Povo, 30/7/2026; Isto\xC9 Dinheiro, 2026",
+    fonte: "IBGE; O Povo, 30/7/2026",
     url: "https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/42703-pnad-continua-taxas-medias-anuais-de-desocupacao-sao-as-menores-da-serie-em-14-unidades-da-federacao.html"
   },
   {
     id: "enchentes",
+    cat: "lula",
     lado: "lula",
     titulo: "Reconstru\xE7\xE3o do RS",
     texto: "Depois das enchentes de 2024, o governo federal destinou cerca de R$ 90 bilh\xF5es ao RS e aos munic\xEDpios, incluindo o Aux\xEDlio Reconstru\xE7\xE3o de R$ 5,1 mil por fam\xEDlia desalojada em 478 cidades.",
     status: "n\xFAmeros informados pela Casa Civil",
     fonte: "Correio da Manh\xE3, mai/2026",
     url: "https://www.correiodamanha.com.br/nacional/sul/2026/05/284088-rs-verba-de-auxilio-reconstrucao-chega-a-94.html"
+  },
+  {
+    id: "fome",
+    cat: "historia",
+    lado: "lula",
+    titulo: "Duas vezes fora do Mapa da Fome",
+    texto: "O Brasil saiu do Mapa da Fome da ONU pela primeira vez em 2014, nos governos do PT. Voltou no per\xEDodo de crise e desmonte de programas sociais (2018-2020) e saiu de novo em 2025, no relat\xF3rio da FAO, com o Plano Brasil Sem Fome e o Bolsa Fam\xEDlia.",
+    status: "relat\xF3rios da FAO/ONU",
+    fonte: "O Povo, 28/7/2025 (FAO, SOFI 2025)",
+    url: "https://www.opovo.com.br/noticias/brasil/2025/07/28/brasil-sai-do-mapa-da-fome-anuncia-onu.html"
+  },
+  {
+    id: "minimo",
+    cat: "historia",
+    lado: "lula",
+    titulo: "Sal\xE1rio m\xEDnimo: +77% acima da infla\xE7\xE3o",
+    texto: "Entre abril de 2002 e janeiro de 2016, o sal\xE1rio m\xEDnimo teve ganho real de 77,18%, segundo o DIEESE. De 2020 a 2022, no governo Bolsonaro, n\xE3o teve aumento real. Com Lula, a valoriza\xE7\xE3o voltou em 2023; em 2026 o m\xEDnimo \xE9 R$ 1.621.",
+    status: "DIEESE; decretos do sal\xE1rio m\xEDnimo",
+    fonte: "DIEESE, nota t\xE9cnica 153; CUT",
+    url: "https://www.dieese.org.br/notatecnica/2015/notaTec153SalarioMinimo2016/4.html"
+  },
+  {
+    id: "educacao",
+    cat: "historia",
+    lado: "lula",
+    titulo: "Universidade para o filho do trabalhador",
+    texto: "Os governos Lula e Dilma criaram 18 universidades federais (14 com Lula, 4 com Dilma), expandiram as vagas nas federais com o Reuni e criaram o ProUni, que d\xE1 bolsas em faculdades privadas.",
+    status: "dados do MEC citados em checagem da Ag\xEAncia P\xFAblica",
+    fonte: "Ag\xEAncia P\xFAblica, 2015",
+    url: "https://apublica.org/checagem/2015/09/truco-prouni-e-novas-universidades-nao-e-bem-assim-marcon/"
+  },
+  {
+    id: "luz",
+    cat: "historia",
+    lado: "lula",
+    titulo: "Luz para Todos",
+    texto: "Criado por Lula em 2003, o Luz para Todos levou energia el\xE9trica a 17,5 milh\xF5es de pessoas em 21 anos, principalmente no campo.",
+    status: "balan\xE7o do programa",
+    fonte: "Cen\xE1rio Energia, 26/12/2024",
+    url: "https://cenarioenergia.com.br/2024/12/26/luz-para-todos-transforma-vidas-e-beneficia-175-milhoes-de-pessoas-em-21-anos/"
+  },
+  {
+    id: "fmi",
+    cat: "historia",
+    lado: "lula",
+    titulo: "Pagou o FMI",
+    texto: "Em dezembro de 2005, o governo Lula quitou antecipadamente a d\xEDvida de US$ 15,5 bilh\xF5es com o FMI, dois anos antes do prazo, economizando cerca de US$ 900 milh\xF5es em juros.",
+    status: "fato hist\xF3rico",
+    fonte: "Isto\xC9 Dinheiro, 21/12/2005",
+    url: "https://istoedinheiro.com.br/por-que-pagamos-antecipado-ao-fmi"
+  },
+  {
+    id: "mcmv",
+    cat: "historia",
+    lado: "lula",
+    titulo: "Minha Casa Minha Vida",
+    texto: "Criado por Lula em 2009, o Minha Casa Minha Vida entregou mais de 4 milh\xF5es de moradias at\xE9 2020 e beneficiou cerca de 16 milh\xF5es de pessoas. Hoje, fam\xEDlias do Bolsa Fam\xEDlia e do BPC podem receber o im\xF3vel sem pagar presta\xE7\xE3o.",
+    status: "dados oficiais citados pela imprensa",
+    fonte: "Congresso em Foco, 2020; Di\xE1rio do Com\xE9rcio",
+    url: "https://diariodocomercio.com.br/mix/familias-do-bolsa-familia-ou-bpc-podem-receber-imovel-sem-pagar-nenhuma-prestacao/"
+  },
+  {
+    id: "lavajato",
+    cat: "historia",
+    lado: "lula",
+    titulo: "E a Lava Jato?",
+    texto: "Em 2021, o STF anulou as condena\xE7\xF5es de Lula porque a 13\xAA Vara de Curitiba n\xE3o tinha compet\xEAncia para julg\xE1-lo, e declarou o ex-juiz Sergio Moro parcial. Em 2022, o Comit\xEA de Direitos Humanos da ONU concluiu que Lula teve violados os direitos a um julgamento imparcial e \xE0 presun\xE7\xE3o de inoc\xEAncia. Lula nunca teve condena\xE7\xE3o definitiva. (Aten\xE7\xE3o: a ONU n\xE3o 'absolveu' Lula; n\xE3o diga isso.)",
+    status: "decis\xF5es do STF; parecer da ONU",
+    fonte: "Aos Fatos, 2/9/2022",
+    url: "https://www.aosfatos.org/noticias/o-que-e-falso-e-o-que-e-fato-em-declaracoes-de-lula-sobre-absolvicoes-na-onu-e-na-justica/"
+  },
+  {
+    id: "crise",
+    cat: "historia",
+    lado: "lula",
+    titulo: "E a crise de 2015?",
+    texto: "A recess\xE3o de 2015 e 2016 foi real: o PIB caiu 3,5% e 3,3%. Mas em 2014 o desemprego m\xE9dio era 7,0%, um dos menores da s\xE9rie do IBGE. Depois do impeachment, com Temer e Bolsonaro, a m\xE9dia anual ficou entre 11,8% e 14,0% de 2017 a 2021. E hoje, com Lula de volta, est\xE1 no menor n\xEDvel da hist\xF3ria.",
+    status: "dados do IBGE",
+    fonte: "IBGE, PNAD Cont\xEDnua (m\xE9dias anuais)",
+    url: "https://agenciadenoticias.ibge.gov.br/agencia-sala-de-imprensa/42703-pnad-continua-taxas-medias-anuais-de-desocupacao-sao-as-menores-da-serie-em-14-unidades-da-federacao.html"
   }
 ];
 var PROPOSTAS = [
-  { tema: "Jornada de trabalho", lula: "Fim da escala 6x1 e 40 horas semanais sem corte de sal\xE1rio.", flavio: "Chama o fim da 6x1 de 'oportunista'; defende negociado sobre o legislado e pagamento por hora." },
+  { tema: "Jornada de trabalho", lula: "Fim da escala 6x1 e 40 horas semanais sem corte de sal\xE1rio.", flavio: "Mant\xE9m a 6x1 (PEC 12/2026) e cria trabalho por hora: 'quem quer trabalhar mais vai trabalhar mais'." },
+  { tema: "Direitos trabalhistas", lula: "Regulamentar Uber e iFood com direitos previdenci\xE1rios.", flavio: "Negociado sobre o legislado, contrato 'com menor custo na folha' para jovens e 'revoga\xE7o regulat\xF3rio'." },
+  { tema: "Aposentadoria e BPC", lula: "Manter o ganho real do sal\xE1rio m\xEDnimo, que corrige os benef\xEDcios de um m\xEDnimo.", flavio: "Equipe estudou corrigir s\xF3 pela infla\xE7\xE3o (Folha); Fl\xE1vio nega. Coordenador fala em 'revisitar a Previd\xEAncia'." },
   { tema: "Imposto de Renda", lula: "Isen\xE7\xE3o at\xE9 R$ 5 mil j\xE1 em vigor; fala em 'justi\xE7a tribut\xE1ria'.", flavio: "Revisar a reforma tribut\xE1ria, reduzir o IVA e impostos de luz e combust\xEDvel." },
-  { tema: "Renda e programas sociais", lula: "Ampliar o Bolsa Fam\xEDlia e manter o ganho real do sal\xE1rio m\xEDnimo.", flavio: "Voucher-creche e microcr\xE9dito da Caixa para mulheres." },
-  { tema: "Trabalho por aplicativo", lula: "Regulamentar Uber e iFood com direitos previdenci\xE1rios.", flavio: "Sem proposta espec\xEDfica nas reportagens." },
-  { tema: "Seguran\xE7a", lula: "Seguran\xE7a p\xFAblica \xE9 uma das 13 diretrizes, sem detalhamento nas reportagens.", flavio: "Maioridade penal aos 16, castra\xE7\xE3o qu\xEDmica e 1 milh\xE3o de c\xE2meras com reconhecimento facial." },
-  { tema: "Estado", lula: "Novo PAC e mais or\xE7amento para investimento em vez de emendas.", flavio: "Cortar ao menos 10 minist\xE9rios e fazer reforma administrativa." },
-  { tema: "Bolsonaro", lula: "\u2014", flavio: "Disse que o candidato do pai tem que ter compromisso com indulto ou anistia." }
+  { tema: "Renda e programas sociais", lula: "Ampliar o Bolsa Fam\xEDlia.", flavio: "Voucher-creche e microcr\xE9dito da Caixa para mulheres." },
+  { tema: "Sa\xFAde e educa\xE7\xE3o", lula: "Ensino em tempo integral, mais creches p\xFAblicas e Pol\xEDtica Nacional de Cuidados.", flavio: "Voucher para creche privada, ensino superior fora do MEC e dados do SUS compartilhados com hospitais privados." },
+  { tema: "Moradia", lula: "Minha Casa Minha Vida, com im\xF3vel sem presta\xE7\xE3o para fam\xEDlias do Bolsa Fam\xEDlia e BPC.", flavio: "Volta do Casa Verde e Amarela." },
+  { tema: "Seguran\xE7a", lula: "Seguran\xE7a p\xFAblica \xE9 uma das 13 diretrizes, sem detalhamento nas reportagens.", flavio: "Reduzir a maioridade penal, castra\xE7\xE3o qu\xEDmica e 1 milh\xE3o de c\xE2meras com reconhecimento facial." },
+  { tema: "Estado", lula: "Novo PAC e mais or\xE7amento para investimento em vez de emendas.", flavio: "Cortar 10 minist\xE9rios sem dizer quais, retomar privatiza\xE7\xF5es e a reforma administrativa do governo do pai." },
+  { tema: "STF e democracia", lula: "Defesa das institui\xE7\xF5es e da Justi\xE7a Eleitoral.", flavio: "Restringir a\xE7\xF5es no STF, falar em impeachment de ministros e anistia ou indulto para o pai." },
+  { tema: "Rela\xE7\xE3o com os EUA", lula: "Rejeitou o Escudo das Am\xE9ricas.", flavio: "Quer entrar 'com muita honra' no Escudo das Am\xE9ricas de Trump." }
 ];
 var PUBLICOS = [
   "quem n\xE3o foi votar no 1\xBA turno",
@@ -136,15 +358,17 @@ var ANGULOS = {
   "quem votou em branco ou anulou": "Branco e nulo n\xE3o anulam nada: s\xF3 deixam os outros decidirem. Mostre o que muda no bolso (IR zero at\xE9 R$ 5 mil, fim da 6x1).",
   "quem votou em Ronaldo Caiado": "Caiado fechou apoio 'integral' a Fl\xE1vio e prometeu indulto a Jair Bolsonaro. Pergunte se a pessoa votou em Caiado para isso. Respeite o voto dela; mostre que Lula \xE9 a op\xE7\xE3o de quem n\xE3o quer o pacote bolsonarista.",
   "quem votou em Augusto Cury": "Cury pediu reconcilia\xE7\xE3o nacional e ficou neutro. Contraste a fala de Fl\xE1vio sobre 'interfer\xEAncia entre os Poderes' e indulto com a proposta de Lula de uma pol\xEDtica nacional de cuidados e de envelhecimento ativo.",
-  "quem votou em Renan Santos": "Eleitor anti-sistema e anticorrup\xE7\xE3o. Mostre os fatos do dossi\xEA sobre Fl\xE1vio (rachadinha nunca julgada no m\xE9rito, empr\xE9stimo do BRB investigado, encontro com o dono do Banco Master) com o status exato de cada um.",
+  "quem votou em Renan Santos": "Eleitor anti-sistema e anticorrup\xE7\xE3o. Mostre os esc\xE2ndalos do dossi\xEA com o status exato: investigado no STF por suspeita de corrup\xE7\xE3o no caso Dark Horse (R$ 61 milh\xF5es do dono do Banco Master), empr\xE9stimo do BRB apurado pela PF, rachadinha arquivada sem julgamento de m\xE9rito, emenda que ajudaria o pr\xF3prio escrit\xF3rio.",
   "quem votou em Romeu Zema": "Eleitor de gest\xE3o e mercado. Use fatos verific\xE1veis: faltas no Senado, empr\xE9stimo do BRB abaixo da m\xE9dia investigado pela PF, emprego no menor n\xEDvel da s\xE9rie hist\xF3rica.",
   "quem votou em Fl\xE1vio mas est\xE1 em d\xFAvida": "Sem humilhar nem chamar de burro. Pergunte o que pesa para ela. Mostre o que Lula j\xE1 entregou (IR zero at\xE9 R$ 5 mil, desemprego no menor n\xEDvel da hist\xF3ria), o fim da 6x1 que Fl\xE1vio chama de 'oportunista', e a prioridade de Fl\xE1vio com indulto ao pai.",
   "jovem que vota pela primeira vez": "Fim da 6x1 (mais tempo de vida), primeiro emprego com desemprego no menor n\xEDvel da hist\xF3ria.",
-  "pessoa idosa": "Ganho real do sal\xE1rio m\xEDnimo (que corrige as aposentadorias de um m\xEDnimo) e a Pol\xEDtica Nacional de Envelhecimento Ativo proposta por Lula.",
+  "pessoa idosa": "Aposentadoria: a equipe de Fl\xE1vio estudou corrigir aposentadorias e BPC s\xF3 pela infla\xE7\xE3o (ele nega) e o coordenador quer revisitar a Previd\xEAncia; com Lula, o m\xEDnimo tem ganho real.",
+  "fam\xEDlia": "Bolso e casa: IR zero at\xE9 R$ 5 mil, aposentadoria e BPC, creche p\xFAblica, Minha Casa Minha Vida.",
+  "colega de trabalho": "Trabalho: fim da 6x1 contra 'quem quer trabalhar mais vai trabalhar mais', negociado sobre o legislado, revoga\xE7o.",
   "trabalhador por aplicativo ou aut\xF4nomo": "Lula quer regulamentar apps com direitos previdenci\xE1rios; Fl\xE1vio defende 'negociado sobre o legislado'."
 };
 var TONS = {
-  duro: "Tom DURO e de confronto: frases curtas, perguntas incisivas, contraste direto entre o que Fl\xE1vio fez e disse e o que Lula entregou. Pode usar ironia leve. Pode chamar fatos pelo nome (rachadinha, indulto, Banco Master). PROIBIDO: xingar, chamar de ladr\xE3o, bandido, criminoso ou corrupto (ele n\xE3o foi condenado), inventar fatos, aumentar n\xFAmeros ou tratar investiga\xE7\xE3o como condena\xE7\xE3o.",
+  duro: "Tom DURO e de confronto: frases curtas, perguntas incisivas, contraste direto entre o que Fl\xE1vio fez e disse e o que Lula entregou. Pode usar ironia leve. Pode chamar fatos pelo nome (rachadinha, indulto, Banco Master, investigado no STF) e citar entre aspas as frases que est\xE3o no dossi\xEA. PROIBIDO: xingar, chamar de ladr\xE3o, bandido, criminoso ou corrupto (ele n\xE3o foi condenado), inventar fatos, aumentar n\xFAmeros ou tratar investiga\xE7\xE3o como condena\xE7\xE3o.",
   firme: "Tom FIRME: direto e seguro, com contraste claro, sem agressividade.",
   leve: "Tom LEVE e acolhedor: conversa de quem quer bem a pessoa, sem ataques."
 };
@@ -192,7 +416,7 @@ function dadosTexto(d, UF2) {
 function buildPrompt(p, d, UF2) {
   const tom = TONS[p.tom] || TONS.firme;
   const angulo = ANGULOS[p.pub] ? "\nFio a puxar com esse p\xFAblico: " + ANGULOS[p.pub] : "";
-  const dossie = DOSSIE.map((f) => `- [${f.titulo}] ${f.texto} (Status: ${f.status}. Fonte: ${f.fonte})`).join("\n");
+  const dossie = DOSSIE.map((f) => `- [${CATEGORIAS[f.cat]} | ${f.titulo}] ${f.texto} (Status: ${f.status}. Fonte: ${f.fonte})`).join("\n");
   const propostas = PROPOSTAS.map((x) => `- ${x.tema}: Lula \u2014 ${x.lula} | Fl\xE1vio \u2014 ${x.flavio}`).join("\n");
   const objetivo = p.mode === "lula" ? "Objetivo: virar o voto. Convencer a pessoa a votar em Lula (13) no 2\xBA turno e a n\xE3o deixar de votar. Use os fatos do dossi\xEA e a compara\xE7\xE3o de propostas para mostrar por que Lula e n\xE3o Fl\xE1vio." : "Objetivo: apartid\xE1rio. Convencer a pessoa a ir votar no 2\xBA turno. N\xE3o pe\xE7a voto em candidato, n\xE3o use o dossi\xEA, n\xE3o critique nem elogie ningu\xE9m.";
   return `Voc\xEA ajuda um militante do Rio Grande do Sul a escrever mensagens para pessoas que ele conhece. Ele vai revisar e mandar do pr\xF3prio celular, uma a uma.
@@ -224,6 +448,7 @@ Regras que n\xE3o podem ser quebradas:
 3. Nada fora do dossi\xEA sobre a vida dos candidatos. Nada de boato, montagem, 'dizem que', ou fato sobre Banco Master que n\xE3o esteja no dossi\xEA. Investiga\xE7\xE3o n\xE3o \xE9 condena\xE7\xE3o; den\xFAncia arquivada n\xE3o \xE9 absolvi\xE7\xE3o nem condena\xE7\xE3o: diga exatamente o que aconteceu.
 4. Sem xingamento, sem ofensa a eleitor, sem amea\xE7a, sem discurso de \xF3dio.
 5. Ligue o problema do bairro a algo concreto do dossi\xEA ou das propostas, sem prometer o que n\xE3o est\xE1 l\xE1.
+7. Se a pessoa atacar o PT ou os governos Lula e Dilma (corrup\xE7\xE3o, Lava Jato, crise de 2015), responda com os itens '20 anos de Lula e Dilma' do dossi\xEA, com honestidade: reconhe\xE7a a recess\xE3o, mas mostre os n\xFAmeros. Inclua pelo menos uma obje\xE7\xE3o desse tipo.
 6. Sem hashtags. No m\xE1ximo 1 emoji por mensagem.
 
 Responda s\xF3 com JSON neste formato, sem texto antes ou depois:
@@ -335,7 +560,7 @@ async function onRequestPost(context) {
     tom: ["duro", "firme", "leve"].includes(body.tom) ? body.tom : "firme"
   };
   if (!env.AI) return json({ codigo: "sem_ia" }, 503);
-  const chave = JSON.stringify(["v2", d ? d.id : null, p.bairro.toLowerCase(), p.prob.toLowerCase(), p.pub, p.mode, p.gaucho, p.tom, body.nova ? Date.now() : 0]);
+  const chave = JSON.stringify(["v3", d ? d.id : null, p.bairro.toLowerCase(), p.prob.toLowerCase(), p.pub, p.mode, p.gaucho, p.tom, body.nova ? Date.now() : 0]);
   const hash = [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(chave)))].map((b) => b.toString(16).padStart(2, "0")).join("");
   const cacheReq = new Request("https://cache.mapa-da-virada/argumentos/" + hash);
   const cache = caches.default;
