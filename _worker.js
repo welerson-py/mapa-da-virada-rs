@@ -202,17 +202,19 @@ async function onRequestPost(context) {
   const erros = [];
   for (const modelo of MODELOS) {
     try {
-      const out = await env.AI.run(modelo, {
+      const params = {
         messages: [{ role: "user", content: prompt }],
-        // Gemma 4 pode "pensar" antes de responder; precisa de folga para não cortar o JSON.
+        // Folga para não cortar o JSON caso o modelo "pense" antes de responder.
         max_completion_tokens: 3e3,
         max_tokens: 3e3,
         temperature: 0.7
-      });
+      };
+      if (modelo.includes("gemma")) params.chat_template_kwargs = { enable_thinking: false };
+      const out = await env.AI.run(modelo, params);
       const texto = typeof out === "string" ? out : out?.response ?? out?.choices?.[0]?.message?.content ?? out?.result?.response ?? out;
       const res = parseJSON(texto);
       if (res) {
-        const resp = json({ ...res, modelo, tentativas: erros }, 200, { "cache-control": "public, max-age=86400" });
+        const resp = json({ ...res, modelo, tentativas: erros, uso: out?.usage || null }, 200, { "cache-control": "public, max-age=86400" });
         context.waitUntil(cache.put(cacheReq, resp.clone()));
         return resp;
       }
