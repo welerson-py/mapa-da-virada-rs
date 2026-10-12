@@ -96,15 +96,65 @@ Responda s\xF3 com JSON neste formato, sem nenhum texto antes ou depois:
 }
 function parseJSON(text) {
   if (!text) return null;
+  if (typeof text === "object") return Array.isArray(text.mensagens) ? text : null;
   const t = String(text).replace(/```(?:json)?/gi, "");
   const a = t.indexOf("{"), b = t.lastIndexOf("}");
   if (a < 0 || b <= a) return null;
-  try {
-    const o = JSON.parse(t.slice(a, b + 1));
-    return o && Array.isArray(o.mensagens) ? o : null;
-  } catch {
-    return null;
+  const bruto = t.slice(a, b + 1);
+  const tentativas = [bruto, consertaJSON(bruto)];
+  for (const s of tentativas) {
+    try {
+      const o = JSON.parse(s);
+      if (o && Array.isArray(o.mensagens)) return o;
+    } catch {
+    }
   }
+  return null;
+}
+function consertaJSON(s) {
+  let out = "", dentro = false, esc = false;
+  for (const ch of s) {
+    if (dentro) {
+      if (esc) {
+        out += ch;
+        esc = false;
+        continue;
+      }
+      if (ch === "\\") {
+        out += ch;
+        esc = true;
+        continue;
+      }
+      if (ch === '"') {
+        dentro = false;
+        out += ch;
+        continue;
+      }
+      if (ch === "\n") {
+        out += "\\n";
+        continue;
+      }
+      if (ch === "\r") continue;
+      if (ch === "	") {
+        out += "\\t";
+        continue;
+      }
+      out += ch;
+    } else {
+      if (ch === '"') {
+        dentro = true;
+        out += ch;
+        continue;
+      }
+      if (ch === "\u201C" || ch === "\u201D") {
+        dentro = true;
+        out += '"';
+        continue;
+      }
+      out += ch;
+    }
+  }
+  return out.replace(/,\s*([}\]])/g, "$1");
 }
 
 // site/mapa-da-virada-rs/lib/dados.js
@@ -149,7 +199,7 @@ async function onRequestPost(context) {
   const emCache = await cache.match(cacheReq);
   if (emCache) return emCache;
   const prompt = buildPrompt(p, d, UF);
-  let ultimoErro = "";
+  const erros = [];
   for (const modelo of MODELOS) {
     try {
       const out = await env.AI.run(modelo, {
@@ -157,20 +207,21 @@ async function onRequestPost(context) {
         max_tokens: 1100,
         temperature: 0.7
       });
-      const texto = typeof out === "string" ? out : out?.response ?? out?.choices?.[0]?.message?.content ?? out?.result?.response ?? "";
-      const res = parseJSON(typeof texto === "string" ? texto : JSON.stringify(texto));
+      const texto = typeof out === "string" ? out : out?.response ?? out?.choices?.[0]?.message?.content ?? out?.result?.response ?? out;
+      const res = parseJSON(texto);
       if (res) {
         const resp = json({ ...res, modelo }, 200, { "cache-control": "public, max-age=86400" });
         context.waitUntil(cache.put(cacheReq, resp.clone()));
         return resp;
       }
-      ultimoErro = "json";
+      erros.push(modelo + " devolveu formato inesperado: " + (typeof texto === "string" ? texto : JSON.stringify(texto)).slice(0, 160));
     } catch (e) {
-      ultimoErro = String(e && e.message || e);
-      if (/neuron|quota|limit|4006|exceeded/i.test(ultimoErro)) return json({ codigo: "cota" }, 429);
+      const msg = String(e && e.message || e);
+      erros.push(modelo + ": " + msg.slice(0, 160));
+      if (/neuron|quota|4006|daily free allocation/i.test(msg)) return json({ codigo: "cota" }, 429);
     }
   }
-  return json({ codigo: "falha", detalhe: ultimoErro.slice(0, 200) }, 502);
+  return json({ codigo: "falha", detalhe: erros.join(" | ").slice(0, 400) }, 502);
 }
 
 // worker/entry.js

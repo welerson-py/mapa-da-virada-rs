@@ -638,13 +638,40 @@ Responda só com JSON neste formato, sem nenhum texto antes ou depois:
 // Lê o JSON mesmo se o modelo escrever algo antes/depois ou usar bloco ```json
 function parseJSON(text) {
   if (!text) return null;
+  if (typeof text === "object") return Array.isArray(text.mensagens) ? text : null;
   const t = String(text).replace(/```(?:json)?/gi, "");
   const a = t.indexOf("{"), b = t.lastIndexOf("}");
   if (a < 0 || b <= a) return null;
-  try {
-    const o = JSON.parse(t.slice(a, b + 1));
-    return o && Array.isArray(o.mensagens) ? o : null;
-  } catch { return null; }
+  const bruto = t.slice(a, b + 1);
+  const tentativas = [bruto, consertaJSON(bruto)];
+  for (const s of tentativas) {
+    try {
+      const o = JSON.parse(s);
+      if (o && Array.isArray(o.mensagens)) return o;
+    } catch {}
+  }
+  return null;
+}
+
+// Conserta erros comuns de modelos: quebra de linha crua dentro de texto, aspas curvas fora de texto, vírgula sobrando.
+function consertaJSON(s) {
+  let out = "", dentro = false, esc = false;
+  for (const ch of s) {
+    if (dentro) {
+      if (esc) { out += ch; esc = false; continue; }
+      if (ch === "\\") { out += ch; esc = true; continue; }
+      if (ch === '"') { dentro = false; out += ch; continue; }
+      if (ch === "\n") { out += "\\n"; continue; }
+      if (ch === "\r") continue;
+      if (ch === "\t") { out += "\\t"; continue; }
+      out += ch;
+    } else {
+      if (ch === '"') { dentro = true; out += ch; continue; }
+      if (ch === "“" || ch === "”") { dentro = true; out += '"'; continue; }
+      out += ch;
+    }
+  }
+  return out.replace(/,\s*([}\]])/g, "$1");
 }
 
 
