@@ -380,10 +380,10 @@ var DOSSIE = [
     cat: "historia",
     lado: "lula",
     titulo: "E a Lava Jato?",
-    texto: "Em 2021, o STF anulou as condena\xE7\xF5es de Lula porque a 13\xAA Vara de Curitiba n\xE3o tinha compet\xEAncia para julg\xE1-lo, e declarou o ex-juiz Sergio Moro parcial. Em 2022, o Comit\xEA de Direitos Humanos da ONU concluiu que Lula teve violados os direitos a um julgamento imparcial e \xE0 presun\xE7\xE3o de inoc\xEAncia. Lula nunca teve condena\xE7\xE3o definitiva. (Aten\xE7\xE3o: a ONU n\xE3o 'absolveu' Lula; n\xE3o diga isso.)",
-    status: "decis\xF5es do STF; parecer da ONU",
-    fonte: "Aos Fatos, 2/9/2022",
-    url: "https://www.aosfatos.org/noticias/o-que-e-falso-e-o-que-e-fato-em-declaracoes-de-lula-sobre-absolvicoes-na-onu-e-na-justica/"
+    texto: "Em 2021, o STF anulou as condena\xE7\xF5es de Lula porque a 13\xAA Vara de Curitiba n\xE3o tinha compet\xEAncia para julg\xE1-lo, e declarou o ex-juiz Sergio Moro parcial. Em abril de 2022, o Comit\xEA de Direitos Humanos da ONU decidiu que o processo da Lava Jato contra Lula foi injusto e violou o Pacto Internacional de Direitos Civis e Pol\xEDticos: Moro n\xE3o foi um juiz imparcial, a presun\xE7\xE3o de inoc\xEAncia foi desrespeitada, as conversas grampeadas e divulgadas violaram sua privacidade, a condu\xE7\xE3o coercitiva foi ilegal e a proibi\xE7\xE3o da candidatura dele em 2018 foi arbitr\xE1ria. Ou seja: pela \xF3tica dos direitos humanos internacionais, Lula foi alvo de um processo ilegal. Lula nunca teve condena\xE7\xE3o definitiva.",
+    status: "decis\xF5es do STF; decis\xE3o do Comit\xEA de Direitos Humanos da ONU",
+    fonte: "Poder360, 28/4/2022",
+    url: "https://www.poder360.com.br/justica/onu-conclui-que-moro-foi-parcial-no-julgamento-de-lula/"
   },
   {
     id: "crise",
@@ -541,7 +541,7 @@ var TEMAS = [
     rotulo: "corrup\xE7\xE3o",
     re: /corrup|ladr|rouba|roubou|roubaram|lava.?jato|mensal|petrolão|petrolao|preso|cadeia|\bpt\b/i,
     fatos: ["lavajato", "darkhorse", "rachadinha", "mansao"],
-    lula: "As condena\xE7\xF5es do Lula foram anuladas pelo STF, que declarou o Moro parcial; ele nunca teve condena\xE7\xE3o definitiva.",
+    lula: "As condena\xE7\xF5es do Lula foram anuladas pelo STF, que declarou o Moro parcial, e a ONU decidiu que o processo contra ele foi injusto e violou seus direitos; ele nunca teve condena\xE7\xE3o definitiva.",
     flavio: "O Fl\xE1vio \xE9 investigado hoje no STF por suspeita de corrup\xE7\xE3o, lavagem e evas\xE3o de divisas, e tem \xE1udio dele pedindo dinheiro ao dono do Banco Master."
   },
   {
@@ -757,7 +757,7 @@ async function onRequestPost(context) {
     tom: ["duro", "firme", "leve"].includes(body.tom) ? body.tom : "firme"
   };
   if (!env.AI) return json({ codigo: "sem_ia" }, 503);
-  const chave = JSON.stringify(["v4", d ? d.id : null, p.bairro.toLowerCase(), p.prob.toLowerCase(), p.pub, p.mode, p.gaucho, p.tom, body.nova ? Date.now() : 0]);
+  const chave = JSON.stringify(["v5", d ? d.id : null, p.bairro.toLowerCase(), p.prob.toLowerCase(), p.pub, p.mode, p.gaucho, p.tom, body.nova ? Date.now() : 0]);
   const hash = [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(chave)))].map((b) => b.toString(16).padStart(2, "0")).join("");
   const cacheReq = new Request("https://cache.mapa-da-virada/argumentos/" + hash);
   const cache = caches.default;

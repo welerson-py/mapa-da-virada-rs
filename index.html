@@ -804,9 +804,9 @@ const DOSSIE = [
     status: "dados oficiais citados pela imprensa",
     fonte: "Congresso em Foco, 2020; Diário do Comércio", url: "https://diariodocomercio.com.br/mix/familias-do-bolsa-familia-ou-bpc-podem-receber-imovel-sem-pagar-nenhuma-prestacao/" },
   { id: "lavajato", cat: "historia", lado: "lula", titulo: "E a Lava Jato?",
-    texto: "Em 2021, o STF anulou as condenações de Lula porque a 13ª Vara de Curitiba não tinha competência para julgá-lo, e declarou o ex-juiz Sergio Moro parcial. Em 2022, o Comitê de Direitos Humanos da ONU concluiu que Lula teve violados os direitos a um julgamento imparcial e à presunção de inocência. Lula nunca teve condenação definitiva. (Atenção: a ONU não 'absolveu' Lula; não diga isso.)",
-    status: "decisões do STF; parecer da ONU",
-    fonte: "Aos Fatos, 2/9/2022", url: "https://www.aosfatos.org/noticias/o-que-e-falso-e-o-que-e-fato-em-declaracoes-de-lula-sobre-absolvicoes-na-onu-e-na-justica/" },
+    texto: "Em 2021, o STF anulou as condenações de Lula porque a 13ª Vara de Curitiba não tinha competência para julgá-lo, e declarou o ex-juiz Sergio Moro parcial. Em abril de 2022, o Comitê de Direitos Humanos da ONU decidiu que o processo da Lava Jato contra Lula foi injusto e violou o Pacto Internacional de Direitos Civis e Políticos: Moro não foi um juiz imparcial, a presunção de inocência foi desrespeitada, as conversas grampeadas e divulgadas violaram sua privacidade, a condução coercitiva foi ilegal e a proibição da candidatura dele em 2018 foi arbitrária. Ou seja: pela ótica dos direitos humanos internacionais, Lula foi alvo de um processo ilegal. Lula nunca teve condenação definitiva.",
+    status: "decisões do STF; decisão do Comitê de Direitos Humanos da ONU",
+    fonte: "Poder360, 28/4/2022", url: "https://www.poder360.com.br/justica/onu-conclui-que-moro-foi-parcial-no-julgamento-de-lula/" },
   { id: "crise", cat: "historia", lado: "lula", titulo: "E a crise de 2015?",
     texto: "A recessão de 2015 e 2016 foi real: o PIB caiu 3,5% e 3,3%. Mas em 2014 o desemprego médio era 7,0%, um dos menores da série do IBGE. Depois do impeachment, com Temer e Bolsonaro, a média anual ficou entre 11,8% e 14,0% de 2017 a 2021. E hoje, com Lula de volta, está no menor nível da história.",
     status: "dados do IBGE",
@@ -968,7 +968,7 @@ const TEMAS = [
     lula: "No Minha Casa Minha Vida, famílias do Bolsa Família e do BPC podem receber o imóvel sem pagar prestação.",
     flavio: "O Flávio quer trazer de volta o Casa Verde e Amarela, que parou de contratar casas para as famílias mais pobres." },
   { id: "corrupcao", rotulo: "corrupção", re: /corrup|ladr|rouba|roubou|roubaram|lava.?jato|mensal|petrolão|petrolao|preso|cadeia|\bpt\b/i, fatos: ["lavajato", "darkhorse", "rachadinha", "mansao"],
-    lula: "As condenações do Lula foram anuladas pelo STF, que declarou o Moro parcial; ele nunca teve condenação definitiva.",
+    lula: "As condenações do Lula foram anuladas pelo STF, que declarou o Moro parcial, e a ONU decidiu que o processo contra ele foi injusto e violou seus direitos; ele nunca teve condenação definitiva.",
     flavio: "O Flávio é investigado hoje no STF por suspeita de corrupção, lavagem e evasão de divisas, e tem áudio dele pedindo dinheiro ao dono do Banco Master." },
   { id: "enchente", rotulo: "enchente e reconstrução", re: /enchent|chuva|alag|cheia|reconstru|desabrig|barragem|dique/i, fatos: ["enchentes", "planolula"],
     lula: "Depois das enchentes de 2024, o governo federal destinou cerca de R$ 90 bilhões ao RS, com Auxílio Reconstrução de R$ 5,1 mil por família desalojada.",
@@ -1277,7 +1277,7 @@ function fallback(p){
     fontes: fatos.slice(0,3).map(f=>f.titulo),
     objecoes:[
       {se_disser:"O Lula criou 30 impostos.", responda:"A maior parte caiu em super-rico, offshore e bet. Quem ganha até R$ 5 mil deixou de pagar IR, e a taxa das blusinhas até US$ 50 foi zerada em setembro."},
-      {se_disser:"O PT roubou, o Lula foi condenado.", responda:"O STF anulou as condenações em 2021 e declarou o Moro parcial; o Lula nunca teve condenação definitiva. Já o Flávio é investigado hoje no STF por suspeita de corrupção no caso do Banco Master."},
+      {se_disser:"O PT roubou, o Lula foi condenado.", responda:"O STF anulou as condenações em 2021 e declarou o Moro parcial. Em 2022, o Comitê de Direitos Humanos da ONU decidiu que o processo foi injusto: juiz parcial, presunção de inocência desrespeitada e candidatura barrada de forma arbitrária. O Lula nunca teve condenação definitiva. Já o Flávio é investigado hoje no STF por suspeita de corrupção no caso do Banco Master."},
       {se_disser:"Não aguento mais PT.", responda:"Se reeleito, é o último mandato possível do Lula: a Constituição só permite uma reeleição seguida."}
     ]
   };
