@@ -734,7 +734,8 @@ aStop.onclick = ()=>ctl?.abort();
 const NO_SITE = !window.claude && /^https?:$/.test(location.protocol);
 
 async function viaServidor(p, signal){
-  const r = await fetch("/api/argumentos", { method:"POST", signal,
+  const API = location.hostname.endsWith("pages.dev") ? "/api/argumentos" : "https://mapa-da-virada-rs.pages.dev/api/argumentos";
+  const r = await fetch(API, { method:"POST", signal,
     headers:{ "content-type":"application/json" },
     body: JSON.stringify({ id: p.d ? p.d.id : null, bairro: p.bairro, prob: p.prob, pub: p.pub, mode: p.mode, gaucho: p.gaucho }) });
   let j = null; try { j = await r.json(); } catch {}

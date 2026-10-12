@@ -234,6 +234,16 @@ var entry_default = {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname === "/api/argumentos") {
+      const origem = request.headers.get("origin") || "";
+      const permitido = ["https://welerson-py.github.io", "https://mapa-da-virada-rs.pages.dev"].includes(origem) || /\.mapa-da-virada-rs\.pages\.dev$/.test(origem);
+      const cors = permitido ? { "access-control-allow-origin": origem, "access-control-allow-methods": "POST, OPTIONS", "access-control-allow-headers": "content-type", "vary": "origin" } : {};
+      if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
+      if (request.method === "POST") {
+        const r = await onRequestPost({ request, env, waitUntil: (p) => ctx.waitUntil(p) });
+        const h = new Headers(r.headers);
+        for (const [k, v] of Object.entries(cors)) h.set(k, v);
+        return new Response(r.body, { status: r.status, headers: h });
+      }
       if (request.method !== "POST")
         return new Response(JSON.stringify({ uso: "POST /api/argumentos" }), { status: 405, headers: { allow: "POST", "content-type": "application/json" } });
       return onRequestPost({ request, env, waitUntil: (p) => ctx.waitUntil(p) });
