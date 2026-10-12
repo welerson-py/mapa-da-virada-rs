@@ -204,17 +204,20 @@ async function onRequestPost(context) {
     try {
       const out = await env.AI.run(modelo, {
         messages: [{ role: "user", content: prompt }],
-        max_tokens: 1100,
+        // Gemma 4 pode "pensar" antes de responder; precisa de folga para não cortar o JSON.
+        max_completion_tokens: 3e3,
+        max_tokens: 3e3,
         temperature: 0.7
       });
       const texto = typeof out === "string" ? out : out?.response ?? out?.choices?.[0]?.message?.content ?? out?.result?.response ?? out;
       const res = parseJSON(texto);
       if (res) {
-        const resp = json({ ...res, modelo }, 200, { "cache-control": "public, max-age=86400" });
+        const resp = json({ ...res, modelo, tentativas: erros }, 200, { "cache-control": "public, max-age=86400" });
         context.waitUntil(cache.put(cacheReq, resp.clone()));
         return resp;
       }
-      erros.push(modelo + " devolveu formato inesperado: " + (typeof texto === "string" ? texto : JSON.stringify(texto)).slice(0, 160));
+      const fim = out?.choices?.[0]?.finish_reason ? " (fim: " + out.choices[0].finish_reason + ")" : "";
+      erros.push(modelo + " devolveu formato inesperado" + fim + ": " + (typeof texto === "string" ? texto : JSON.stringify(texto)).slice(0, 200));
     } catch (e) {
       const msg = String(e && e.message || e);
       erros.push(modelo + ": " + msg.slice(0, 160));
